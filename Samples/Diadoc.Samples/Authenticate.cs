@@ -46,8 +46,15 @@ namespace Diadoc.Samples
 			// В дальнейшем полученный токен следует подставлять в те методы API, где он требуется. (PostMessage и т.п.)
 			// Токен длится 24 часа, после его протухания методы начнут возвращать 401, и потребуется вновь получить токен через методы выше.
 			
-			// Получение токена доступа при помощи данных интегратора
-			var accessToken = diadocApi.AuthenticateWithOidc(Constants.DefaultClientId, Constants.DefaultClientSecret, Constants.DefaultRefreshToken);
+			// Для аутентификации по схеме OIDC необходимо создать экземпляр класса DiadocApi с указанием секретного ключа
+			var diadocApiWithClientSecret =  new DiadocApi(
+				Constants.DefaultClientId,
+				Constants.DefaultApiUrl,
+				crypt,
+				Constants.DefaultClientSecret);
+			
+			// Получение токена доступа при помощи токена обновления
+			var accessToken = diadocApiWithClientSecret.AuthenticateWithOidc(Constants.DefaultRefreshToken);
 			Console.WriteLine("Успешно получен токен доступа по токену обновления. Токен: " + accessToken);
 		}
 	}

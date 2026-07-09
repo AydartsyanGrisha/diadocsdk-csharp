@@ -48,9 +48,11 @@ namespace Diadoc.Api
 			string apiClientId,
 			HttpClient httpClient,
 			ICrypt crypt,
-			string oidcBaseUrl)
+			string oidcClientSecret,
+			string oidcBaseUrl = null)
 			: this(apiClientId, httpClient, crypt)
 		{
+			this.oidcClientSecret = oidcClientSecret;
 			this.oidcBaseUrl = oidcBaseUrl;
 		}
 

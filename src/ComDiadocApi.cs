@@ -39,7 +39,7 @@ namespace Diadoc.Api
 	public interface IComDiadocApi
 	{
 		IComDocflowApi DocflowApi { get; }
-		void Initialize(string apiClientId, string serverUrl);
+		void Initialize(string apiClientId, string serverUrl, string oidcClientSecret = null);
 		void SetProxyUri(string uri);
 		void SetProxyCredentials(string proxyUser, string proxyPassword);
 		void SetProxyCredentialsSecure(string proxyUser, SecureString proxyPassword);
@@ -49,7 +49,7 @@ namespace Diadoc.Api
 		string AuthenticateWithPassword(string login, string password);
 		string AuthenticateWithCertificate(string thumbprint, bool useLocalSystemStorage = false);
 		string AuthenticateWithSid(string sid);
-		string AuthenticateWithOidc(string clientId, string clientSecret, string refreshToken);
+		string AuthenticateWithOidc(string refreshToken);
 		[Obsolete("Use GetMyEmployee()")]
 		OrganizationUserPermissions GetMyPermissions(string authToken, string orgId);
 
@@ -900,11 +900,11 @@ namespace Diadoc.Api
 		private DiadocApi diadoc;
 		public IComDocflowApi DocflowApi { get; private set; }
 
-		public void Initialize(string apiClientId, string serverUrl)
+		public void Initialize(string apiClientId, string serverUrl, string oidcClientSecret = null)
 		{
 			var httpClient = new HttpClient(serverUrl);
 			httpClient.SetUserAgent(UserAgentBuilder.Build("COM"));
-			diadoc = new DiadocApi(new DiadocHttpApi(apiClientId, httpClient, new WinApiCrypt()));
+			diadoc = new DiadocApi(new DiadocHttpApi(apiClientId, httpClient, new WinApiCrypt(), oidcClientSecret));
 			DocflowApi = new ComDocflowApi(diadoc.Docflow);
 		}
 
@@ -958,9 +958,9 @@ namespace Diadoc.Api
 			return diadoc.AuthenticateBySid(sid);
 		}
 
-		public string AuthenticateWithOidc(string clientId, string clientSecret, string refreshToken)
+		public string AuthenticateWithOidc(string refreshToken)
 		{
-			return diadoc.AuthenticateWithOidc(clientId, clientSecret, refreshToken);
+			return diadoc.AuthenticateWithOidc(refreshToken);
 		}
 
 		public OrganizationUserPermissions GetMyPermissions(string authToken, string orgId)

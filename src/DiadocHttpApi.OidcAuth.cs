@@ -17,6 +17,7 @@ namespace Diadoc.Api
 		private const string OidcTokenEndpointPath = "/connect/token";
 
 		private readonly string oidcBaseUrl;
+		private readonly string oidcClientSecret;
 		private HttpClient oidcHttpClient;
 
 		private HttpClient OidcHttpClient
@@ -34,50 +35,55 @@ namespace Diadoc.Api
 		/// <summary>
 		///     Gets an access token via OIDC grant_type=refresh_token.
 		/// </summary>
-		/// <param name="clientId">Integrator's Client ID from the integrator cabinet</param>
-		/// <param name="clientSecret">Integrator's Client Secret</param>
 		/// <param name="refreshToken">Integrator's Refresh Token</param>
 		/// <returns>Access token as a string</returns>
-		public string AuthenticateWithOidc(string clientId, string clientSecret, string refreshToken)
+		public string AuthenticateWithOidc(string refreshToken)
 		{
-			var response = PerformOidcTokenRequest(clientId, clientSecret, refreshToken);
+			EnsureOidcClientSecretIsSet();
+			var response = PerformOidcTokenRequest(refreshToken);
 			return response.AccessToken;
 		}
 
 #if !NET35
-		public async Task<string> AuthenticateWithOidcAsync(string clientId, string clientSecret, string refreshToken)
+		public async Task<string> AuthenticateWithOidcAsync(string refreshToken)
 		{
-			var response = await PerformOidcTokenRequestAsync(clientId, clientSecret, refreshToken).ConfigureAwait(false);
+			EnsureOidcClientSecretIsSet();
+			var response = await PerformOidcTokenRequestAsync(refreshToken).ConfigureAwait(false);
 			return response.AccessToken;
 		}
 #endif
 
-		private OidcTokenResponse PerformOidcTokenRequest(
-			string clientId, string clientSecret, string refreshToken)
+		private void EnsureOidcClientSecretIsSet()
 		{
-			var request = BuildOidcHttpRequest(clientId, clientSecret, refreshToken);
+			if (string.IsNullOrEmpty(oidcClientSecret))
+				throw new InvalidOperationException(
+					"OIDC client secret is not set. Pass it to the DiadocApi/DiadocHttpApi constructor (or to ComDiadocApi.Initialize) before calling AuthenticateWithOidc.");
+		}
+		
+		private OidcTokenResponse PerformOidcTokenRequest(string refreshToken)
+		{
+			var request = BuildOidcHttpRequest(refreshToken);
 			var httpResponse = OidcHttpClient.PerformHttpRequest(request);
 			return ParseOidcTokenResponse(httpResponse);
 		}
 
 #if !NET35
-		private async Task<OidcTokenResponse> PerformOidcTokenRequestAsync(
-			string clientId, string clientSecret, string refreshToken)
+		private async Task<OidcTokenResponse> PerformOidcTokenRequestAsync(string refreshToken)
 		{
-			var request = BuildOidcHttpRequest(clientId, clientSecret, refreshToken);
+			var request = BuildOidcHttpRequest(refreshToken);
 			var httpResponse = await OidcHttpClient.PerformHttpRequestAsync(request).ConfigureAwait(false);
 			return ParseOidcTokenResponse(httpResponse);
 		}
 #endif
 
-		private HttpRequest BuildOidcHttpRequest(string clientId, string clientSecret, string refreshToken)
+		private HttpRequest BuildOidcHttpRequest(string refreshToken)
 		{
 			var parameters = new Dictionary<string, string>
 			{
 				{"grant_type", "refresh_token"},
 				{"refresh_token", refreshToken},
-				{"client_id", clientId},
-				{"client_secret", clientSecret}
+				{"client_id", apiClientId},
+				{"client_secret", oidcClientSecret}
 			};
 
 			var body = EncodeFormUrlEncoded(parameters);
