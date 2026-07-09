@@ -752,7 +752,7 @@ namespace Diadoc.Api
 		Task<Message> SendDraftAsync(string authToken, DraftToSend draftToSend, string operationId = null);
 		Task<PrintFormResult> GeneratePrintFormAsync(string authToken, string boxId, string messageId, string documentId);
 		Task<string> GeneratePrintFormFromAttachmentAsync(string authToken, DocumentType documentType, byte[] content, string fromBoxId = null);
-я		Task<string> GeneratePrintFormFromAttachmentAsync(string authToken, string documentType, byte[] content, string fromBoxId = null);
+		Task<string> GeneratePrintFormFromAttachmentAsync(string authToken, string documentType, byte[] content, string fromBoxId = null);
 		[Obsolete("Use GetGeneratedPrintFormAsync without `documentType` parameter")]
 		Task<PrintFormResult> GetGeneratedPrintFormAsync(string authToken, DocumentType documentType, string printFormId);
 		Task<PrintFormResult> GetGeneratedPrintFormAsync(string authToken, string printFormId);
