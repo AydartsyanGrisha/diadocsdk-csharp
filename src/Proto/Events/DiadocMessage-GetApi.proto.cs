@@ -1136,6 +1136,269 @@ namespace Diadoc.Api.Proto.Events
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
   }
   
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"MessageToPostPrototype")]
+  public partial class MessageToPostPrototype : global::ProtoBuf.IExtensible
+  {
+    public MessageToPostPrototype() {}
+    
+    private string _FromBoxId;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"FromBoxId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string FromBoxId
+    {
+      get { return _FromBoxId; }
+      set { _FromBoxId = value; }
+    }
+
+    private string _FromDepartmentId = "";
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"FromDepartmentId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string FromDepartmentId
+    {
+      get { return _FromDepartmentId; }
+      set { _FromDepartmentId = value; }
+    }
+
+    private string _ToBoxId = "";
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"ToBoxId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string ToBoxId
+    {
+      get { return _ToBoxId; }
+      set { _ToBoxId = value; }
+    }
+
+    private string _ToDepartmentId = "";
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"ToDepartmentId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string ToDepartmentId
+    {
+      get { return _ToDepartmentId; }
+      set { _ToDepartmentId = value; }
+    }
+
+    private bool _IsInternal = (bool)false;
+    [global::ProtoBuf.ProtoMember(5, IsRequired = false, Name=@"IsInternal", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue((bool)false)]
+    public bool IsInternal
+    {
+      get { return _IsInternal; }
+      set { _IsInternal = value; }
+    }
+
+    private string _ProxyBoxId = "";
+    [global::ProtoBuf.ProtoMember(6, IsRequired = false, Name=@"ProxyBoxId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string ProxyBoxId
+    {
+      get { return _ProxyBoxId; }
+      set { _ProxyBoxId = value; }
+    }
+
+    private string _ProxyDepartmentId = "";
+    [global::ProtoBuf.ProtoMember(7, IsRequired = false, Name=@"ProxyDepartmentId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string ProxyDepartmentId
+    {
+      get { return _ProxyDepartmentId; }
+      set { _ProxyDepartmentId = value; }
+    }
+    private readonly global::System.Collections.Generic.List<Diadoc.Api.Proto.Events.DocumentAttachmentPrototype> _DocumentPrototypes = new global::System.Collections.Generic.List<Diadoc.Api.Proto.Events.DocumentAttachmentPrototype>();
+    [global::ProtoBuf.ProtoMember(8, Name=@"DocumentPrototypes", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public global::System.Collections.Generic.List<Diadoc.Api.Proto.Events.DocumentAttachmentPrototype> DocumentPrototypes
+    {
+      get { return _DocumentPrototypes; }
+    }
+  
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"DocumentAttachmentPrototype")]
+  public partial class DocumentAttachmentPrototype : global::ProtoBuf.IExtensible
+  {
+    public DocumentAttachmentPrototype() {}
+    
+    private string _CustomDocumentId;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"CustomDocumentId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string CustomDocumentId
+    {
+      get { return _CustomDocumentId; }
+      set { _CustomDocumentId = value; }
+    }
+    private string _TypeNamedId;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"TypeNamedId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string TypeNamedId
+    {
+      get { return _TypeNamedId; }
+      set { _TypeNamedId = value; }
+    }
+
+    private string _Function = "";
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"Function", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string Function
+    {
+      get { return _Function; }
+      set { _Function = value; }
+    }
+
+    private string _Version = "";
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"Version", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string Version
+    {
+      get { return _Version; }
+      set { _Version = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"MessageValidationResult")]
+  public partial class MessageValidationResult : global::ProtoBuf.IExtensible
+  {
+    public MessageValidationResult() {}
+    
+    private string _FromBoxId;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"FromBoxId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string FromBoxId
+    {
+      get { return _FromBoxId; }
+      set { _FromBoxId = value; }
+    }
+    private string _FromTitle;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"FromTitle", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string FromTitle
+    {
+      get { return _FromTitle; }
+      set { _FromTitle = value; }
+    }
+
+    private string _ToBoxId = "";
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"ToBoxId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string ToBoxId
+    {
+      get { return _ToBoxId; }
+      set { _ToBoxId = value; }
+    }
+
+    private string _ToTitle = "";
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"ToTitle", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string ToTitle
+    {
+      get { return _ToTitle; }
+      set { _ToTitle = value; }
+    }
+
+    private bool _IsInternal = (bool)false;
+    [global::ProtoBuf.ProtoMember(5, IsRequired = false, Name=@"IsInternal", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue((bool)false)]
+    public bool IsInternal
+    {
+      get { return _IsInternal; }
+      set { _IsInternal = value; }
+    }
+
+    private bool _IsProxified = (bool)false;
+    [global::ProtoBuf.ProtoMember(6, IsRequired = false, Name=@"IsProxified", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue((bool)false)]
+    public bool IsProxified
+    {
+      get { return _IsProxified; }
+      set { _IsProxified = value; }
+    }
+
+    private string _ProxyBoxId = "";
+    [global::ProtoBuf.ProtoMember(7, IsRequired = false, Name=@"ProxyBoxId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string ProxyBoxId
+    {
+      get { return _ProxyBoxId; }
+      set { _ProxyBoxId = value; }
+    }
+
+    private string _ProxyTitle = "";
+    [global::ProtoBuf.ProtoMember(8, IsRequired = false, Name=@"ProxyTitle", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string ProxyTitle
+    {
+      get { return _ProxyTitle; }
+      set { _ProxyTitle = value; }
+    }
+    private readonly global::System.Collections.Generic.List<Diadoc.Api.Proto.Events.MessageValidationError> _Errors = new global::System.Collections.Generic.List<Diadoc.Api.Proto.Events.MessageValidationError>();
+    [global::ProtoBuf.ProtoMember(9, Name=@"Errors", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public global::System.Collections.Generic.List<Diadoc.Api.Proto.Events.MessageValidationError> Errors
+    {
+      get { return _Errors; }
+    }
+  
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"MessageValidationError")]
+  public partial class MessageValidationError : global::ProtoBuf.IExtensible
+  {
+    public MessageValidationError() {}
+    
+    private Diadoc.Api.Proto.Events.MessageValidationErrorSeverity _Severity;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"Severity", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public Diadoc.Api.Proto.Events.MessageValidationErrorSeverity Severity
+    {
+      get { return _Severity; }
+      set { _Severity = value; }
+    }
+    private string _UserMessage;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"UserMessage", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string UserMessage
+    {
+      get { return _UserMessage; }
+      set { _UserMessage = value; }
+    }
+    private string _ApiMessage;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"ApiMessage", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string ApiMessage
+    {
+      get { return _ApiMessage; }
+      set { _ApiMessage = value; }
+    }
+
+    private string _CustomDocumentId = "";
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"CustomDocumentId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string CustomDocumentId
+    {
+      get { return _CustomDocumentId; }
+      set { _CustomDocumentId = value; }
+    }
+
+    private string _BoxId = "";
+    [global::ProtoBuf.ProtoMember(5, IsRequired = false, Name=@"BoxId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string BoxId
+    {
+      get { return _BoxId; }
+      set { _BoxId = value; }
+    }
+
+    private string _DepartmentId = "";
+    [global::ProtoBuf.ProtoMember(6, IsRequired = false, Name=@"DepartmentId", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string DepartmentId
+    {
+      get { return _DepartmentId; }
+      set { _DepartmentId = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
     [global::ProtoBuf.ProtoContract(Name=@"TemplateRefusalType")]
     public enum TemplateRefusalType
     {
@@ -1353,6 +1616,20 @@ namespace Diadoc.Api.Proto.Events
             
       [global::ProtoBuf.ProtoEnum(Name=@"TemplateTransformationChange", Value=90)]
       TemplateTransformationChange = 90
+    }
+  
+    [global::ProtoBuf.ProtoContract(Name=@"MessageValidationErrorSeverity")]
+    public enum MessageValidationErrorSeverity
+    {
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"Unknown", Value=0)]
+      Unknown = 0,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"Error", Value=1)]
+      Error = 1,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"Warning", Value=2)]
+      Warning = 2
     }
   
 }

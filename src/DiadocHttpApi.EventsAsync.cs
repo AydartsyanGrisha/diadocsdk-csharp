@@ -209,6 +209,12 @@ namespace Diadoc.Api
 			return PerformHttpRequestAsync(authToken, "GET", qsb.BuildPathAndQuery());
 		}
 
+		[NotNull]
+		public Task<MessageValidationResult> CanPostMessageAsync(string authToken, MessageToPostPrototype prototype)
+		{
+			return PerformHttpRequestAsync<MessageToPostPrototype, MessageValidationResult>(authToken, "/CanPostMessage", prototype);
+		}
+
 		public Task<Message> PostMessageAsync(string authToken, MessageToPost msg, string operationId = null)
 		{
 			var qsb = new PathAndQueryBuilder("/V3/PostMessage");
