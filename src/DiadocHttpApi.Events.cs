@@ -208,6 +208,11 @@ namespace Diadoc.Api
 			return PerformHttpRequest(authToken, "GET", queryString);
 		}
 
+		public MessageValidationResult CanPostMessage(string authToken, MessageToPostPrototype prototype)
+		{
+			return PerformHttpRequest<MessageToPostPrototype, MessageValidationResult>(authToken, "/CanPostMessage", prototype);
+		}
+
 		public Message PostMessage(string authToken, MessageToPost msg, string operationId = null)
 		{
 			var queryString = string.Format("/V3/PostMessage?operationId={0}", operationId);

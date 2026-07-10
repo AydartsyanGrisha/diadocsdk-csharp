@@ -395,6 +395,13 @@ namespace Diadoc.Api
 			return diadocHttpApi.GetEventV3(authToken, boxId, eventId);
 		}
 
+		public MessageValidationResult CanPostMessage(string authToken, MessageToPostPrototype prototype)
+		{
+			if (authToken == null) throw new ArgumentNullException("authToken");
+			if (prototype == null) throw new ArgumentNullException("prototype");
+			return diadocHttpApi.CanPostMessage(authToken, prototype);
+		}
+
 		public Message PostMessage(string authToken, MessageToPost msg, string operationId = null)
 		{
 			if (authToken == null) throw new ArgumentNullException("authToken");
