@@ -9,6 +9,7 @@ namespace Diadoc.Api
 {
 	public partial class DiadocHttpApi
 	{
+		[Obsolete("Use GeneratePrintFormFromAttachment with string documentType parameter")]
 		[NotNull]
 		public string GeneratePrintFormFromAttachment(string authToken, DocumentType documentType, byte[] content, string fromBoxId = null)
 		{

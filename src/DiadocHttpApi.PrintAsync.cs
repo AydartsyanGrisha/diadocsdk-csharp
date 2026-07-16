@@ -10,6 +10,7 @@ namespace Diadoc.Api
 {
 	public partial class DiadocHttpApi
 	{
+		[Obsolete("Use GeneratePrintFormFromAttachmentAsync with string documentType parameter")]
 		[ItemNotNull]
 		public async Task<string> GeneratePrintFormFromAttachmentAsync(string authToken, DocumentType documentType, byte[] content, string fromBoxId = null)
 		{
