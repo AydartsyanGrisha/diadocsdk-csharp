@@ -243,7 +243,9 @@ namespace Diadoc.Api
 		void RecycleDraft(string authToken, string boxId, string draftId);
 		Message SendDraft(string authToken, DraftToSend draftToSend, string operationId = null);
 		PrintFormResult GeneratePrintForm(string authToken, string boxId, string messageId, string documentId);
+		[Obsolete("Use GeneratePrintFormFromAttachment with string documentType parameter")]
 		string GeneratePrintFormFromAttachment(string authToken, DocumentType documentType, byte[] content, string fromBoxId = null);
+		string GeneratePrintFormFromAttachment(string authToken, string documentType, byte[] content, string fromBoxId = null);
 		[Obsolete("Use GetGeneratedPrintForm without `documentType` parameter")]
 		PrintFormResult GetGeneratedPrintForm(string authToken, DocumentType documentType, string printFormId);
 		PrintFormResult GetGeneratedPrintForm(string authToken, string printFormId);
@@ -750,7 +752,9 @@ namespace Diadoc.Api
 		Task RecycleDraftAsync(string authToken, string boxId, string draftId);
 		Task<Message> SendDraftAsync(string authToken, DraftToSend draftToSend, string operationId = null);
 		Task<PrintFormResult> GeneratePrintFormAsync(string authToken, string boxId, string messageId, string documentId);
+		[Obsolete("Use GeneratePrintFormFromAttachmentAsync with string documentType parameter")]
 		Task<string> GeneratePrintFormFromAttachmentAsync(string authToken, DocumentType documentType, byte[] content, string fromBoxId = null);
+		Task<string> GeneratePrintFormFromAttachmentAsync(string authToken, string documentType, byte[] content, string fromBoxId = null);
 		[Obsolete("Use GetGeneratedPrintFormAsync without `documentType` parameter")]
 		Task<PrintFormResult> GetGeneratedPrintFormAsync(string authToken, DocumentType documentType, string printFormId);
 		Task<PrintFormResult> GetGeneratedPrintFormAsync(string authToken, string printFormId);
