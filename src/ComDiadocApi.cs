@@ -18,6 +18,7 @@ using Diadoc.Api.Proto.Employees;
 using Diadoc.Api.Proto.Employees.PowersOfAttorney;
 using Diadoc.Api.Proto.Employees.Subscriptions;
 using Diadoc.Api.Proto.Events;
+using Diadoc.Api.Proto.FnsParticipants;
 using Diadoc.Api.Proto.Forwarding;
 using Diadoc.Api.Proto.Invoicing;
 using Diadoc.Api.Proto.Invoicing.Signers;
@@ -48,23 +49,33 @@ namespace Diadoc.Api
 		string AuthenticateWithPassword(string login, string password);
 		string AuthenticateWithCertificate(string thumbprint, bool useLocalSystemStorage = false);
 		string AuthenticateWithSid(string sid);
+
 		[Obsolete("Use GetMyEmployee()")]
 		OrganizationUserPermissions GetMyPermissions(string authToken, string orgId);
+
 		OrganizationFeatures GetOrganizationFeatures(string authToken, string boxId);
 
 		[Obsolete("Use GetOrganizationUsersV2()")]
 		ReadonlyList GetOrganizationUsers(string authToken, string orgId);
+
 		ReadonlyList GetOrganizationUsersV2(string authToken, string boxId);
 		ReadonlyList GetMyOrganizations(string authToken, bool autoRegister = true);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		ReadonlyList GetOrganizationsByInnKpp(string inn, string kpp);
+
 		ReadonlyList GetOrganizationsByInnKpp(string authToken, string inn, string kpp);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		Organization GetOrganizationById(string orgId);
+
 		Organization GetOrganizationById(string authToken, string orgId);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		Organization GetOrganizationByInn(string inn);
+
 		Organization GetOrganizationByInn(string authToken, string inn);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		ReadonlyList GetOrganizationsByInnList([MarshalAs(UnmanagedType.IDispatch)] object innList);
 
@@ -86,9 +97,12 @@ namespace Diadoc.Api
 
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		Organization GetOrganizationByFnsParticipantId(string fnsParticipantId);
+
 		Organization GetOrganizationByFnsParticipantId(string authToken, string fnsParticipantId);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		Box GetBox(string boxId);
+
 		Box GetBox(string authToken, string boxId);
 		Department GetDepartment(string authToken, string orgId, string departmentId);
 
@@ -130,10 +144,13 @@ namespace Diadoc.Api
 		void SaveEntityContent(string authToken, string boxId, string messageId, string entityId, string filePath);
 		Message PostMessage(string authToken, [MarshalAs(UnmanagedType.IDispatch)] object message);
 		Message PostMessage(string authToken, [MarshalAs(UnmanagedType.IDispatch)] object message, string operationId);
+
 		[Obsolete("Use PostMessagePatchV4()")]
 		MessagePatch PostMessagePatch(string authToken, [MarshalAs(UnmanagedType.IDispatch)] object patch);
+
 		[Obsolete("Use PostMessagePatchV4()")]
 		MessagePatch PostMessagePatch(string authToken, [MarshalAs(UnmanagedType.IDispatch)] object patch, string operationId);
+
 		MessagePatch PostMessagePatchV4(string authToken, [MarshalAs(UnmanagedType.IDispatch)] object patch);
 		MessagePatch PostMessagePatchV4(string authToken, [MarshalAs(UnmanagedType.IDispatch)] object patch, string operationId);
 
@@ -325,6 +342,7 @@ namespace Diadoc.Api
 
 		[Obsolete("Use GetMessageV6() for get template")]
 		Template GetTemplate(string authToken, string boxId, string messageId);
+
 		void RecycleDraft(string authToken, string boxId, string draftId);
 		Message SendDraft(string authToken, [MarshalAs(UnmanagedType.IDispatch)] object draftToSend);
 		Message SendDraft(string authToken, [MarshalAs(UnmanagedType.IDispatch)] object draftToSend, string operationId);
@@ -342,7 +360,7 @@ namespace Diadoc.Api
 
 		[Obsolete("Use GeneratePrintFormFromAttachment with string documentType parameter")]
 		string GeneratePrintFormFromAttachment(string authToken, int documentType, byte[] content);
-		
+
 		string GeneratePrintFormFromAttachment(string authToken, string documentType, byte[] content, string fromBoxId = null);
 
 		DateTime NullDateTime();
@@ -380,10 +398,12 @@ namespace Diadoc.Api
 
 		[Obsolete("Use GetCounteragentV3()")]
 		Counteragent GetCounteragent(string authToken, string myOrgId, string counteragentOrgId);
+
 		Counteragent GetCounteragentV3(string authToken, string myBoxId, string counteragentBoxId);
 
 		[Obsolete("Use GetCounteragentCertificatesV2()")]
 		CounteragentCertificateList GetCounteragentCertificates(string authToken, string myOrgId, string counteragentOrgId);
+
 		CounteragentCertificateList GetCounteragentCertificatesV2(string authToken, string myBoxId, string counteragentBoxId);
 
 		[Obsolete("Use GetCounteragentsV3()")]
@@ -394,12 +414,13 @@ namespace Diadoc.Api
 			string afterIndexKey,
 			string query = null,
 			int pageSize = 0);
+
 		CounteragentList GetCounteragentsV3(
-			string authToken, 
-			string myBoxId, 
-			string counteragentStatus, 
-			string afterIndexKey, 
-			string query = null, 
+			string authToken,
+			string myBoxId,
+			string counteragentStatus,
+			string afterIndexKey,
+			string query = null,
 			int pageSize = 0);
 
 		[Obsolete("Use AcquireCounteragentV3()")]
@@ -425,10 +446,12 @@ namespace Diadoc.Api
 
 		[Obsolete("Use WaitAcquireCounteragentResultV2()")]
 		AcquireCounteragentResult WaitAcquireCounteragentResult(string authToken, string taskId);
+
 		AcquireCounteragentResultV2 WaitAcquireCounteragentResultV2(string authToken, string taskId);
 
 		[Obsolete("Use BreakWithCounteragentV2()")]
 		void BreakWithCounteragent(string authToken, string myOrgId, string counteragentOrgId, string comment);
+
 		void BreakWithCounteragentV2(string authToken, string myBoxId, string counteragentBoxId, string comment);
 
 		BoxCounteragentEventList GetCounteragentEvents(
@@ -441,8 +464,10 @@ namespace Diadoc.Api
 
 		string UploadFileToShelf(string authToken, string fileName);
 		void GetFileFromShelf(string authToken, string nameOnShelf, string fileName);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		RussianAddress ParseRussianAddress(string address);
+
 		RussianAddress ParseRussianAddress(string authToken, string address);
 		GarAddress ParseGarAddress(string authToken, string address);
 
@@ -577,15 +602,22 @@ namespace Diadoc.Api
 
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		UniversalTransferDocumentSellerTitleInfo ParseUniversalTransferDocumentSellerTitleXml(byte[] xmlContent, string documentVersion = DefaultDocumentVersions.Utd);
+
 		UniversalTransferDocumentSellerTitleInfo ParseUniversalTransferDocumentSellerTitleXml(string authToken, byte[] xmlContent, string documentVersion = DefaultDocumentVersions.Utd);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		UniversalTransferDocumentSellerTitleInfo ParseUniversalTransferDocumentSellerTitleXmlFromFile(string fileName, string documentVersion = DefaultDocumentVersions.Utd);
+
 		UniversalTransferDocumentSellerTitleInfo ParseUniversalTransferDocumentSellerTitleXmlFromFile(string authToken, string fileName, string documentVersion = DefaultDocumentVersions.Utd);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		UniversalTransferDocumentBuyerTitleInfo ParseUniversalTransferDocumentBuyerTitleXml(byte[] xmlContent);
+
 		UniversalTransferDocumentBuyerTitleInfo ParseUniversalTransferDocumentBuyerTitleXml(string authToken, byte[] xmlContent);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		UniversalTransferDocumentBuyerTitleInfo ParseUniversalTransferDocumentBuyerTitleXmlFromFile(string fileName);
+
 		UniversalTransferDocumentBuyerTitleInfo ParseUniversalTransferDocumentBuyerTitleXmlFromFile(string authToken, string fileName);
 
 		[Obsolete("Use ParseTitleXml()")]
@@ -644,26 +676,36 @@ namespace Diadoc.Api
 
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		RevocationRequestInfo ParseRevocationRequestXml(byte[] revocationRequestXmlContent);
+
 		RevocationRequestInfo ParseRevocationRequestXml(string authToken, byte[] revocationRequestXmlContent);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		RevocationRequestInfo ParseRevocationRequestXmlFromFile(string fileName);
+
 		RevocationRequestInfo ParseRevocationRequestXmlFromFile(string authToken, string fileName);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		SignatureRejectionInfo ParseSignatureRejectionXml(byte[] signatureRejectionXmlContent);
+
 		SignatureRejectionInfo ParseSignatureRejectionXml(string authToken, byte[] signatureRejectionXmlContent);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		SignatureRejectionInfo ParseSignatureRejectionXmlFromFile(string fileName);
+
 		SignatureRejectionInfo ParseSignatureRejectionXmlFromFile(string authToken, string fileName);
-		
+
 		byte[] ParseUniversalMessageXml(string authToken, byte[] content);
 
 		byte[] ParseUniversalMessage(string authToken, string boxId, string messageId, string attachmentId);
-		
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		Organization GetOrganizationByBoxId(string boxId);
+
 		Organization GetOrganizationByBoxId(string authToken, string boxId);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		Organization GetOrganizationByInnKpp(string inn, string kpp);
+
 		Organization GetOrganizationByInnKpp(string authToken, string inn, string kpp);
 		IDocumentProtocolResult GenerateDocumentProtocol(string authToken, string boxId, string messageId, string documentId);
 
@@ -727,6 +769,7 @@ namespace Diadoc.Api
 
 		[Obsolete("Use GetMyUserV2()")]
 		User GetMyUser(string authToken);
+
 		UserV2 GetMyUserV2(string authToken);
 		CertificateList GetMyCertificates(string authToken, string boxId, bool includeGoskeyCertificates = false);
 
@@ -775,7 +818,7 @@ namespace Diadoc.Api
 			string boxId,
 			[CanBeNull] string userId,
 			[MarshalAs(UnmanagedType.IDispatch)] object powerOfAttorneyToUpdate);
-		
+
 		EmployeePowerOfAttorney AddEmployeePowerOfAttorneyV2(
 			string authToken,
 			string boxId,
@@ -814,7 +857,7 @@ namespace Diadoc.Api
 
 		AsyncMethodResult RegisterPowerOfAttorney(string authToken, string boxId, [MarshalAs(UnmanagedType.IDispatch)] object powerOfAttorneyToRegister);
 		PowerOfAttorneyRegisterResult RegisterPowerOfAttorneyResult(string authToken, string boxId, string taskId);
-		
+
 		PowerOfAttorneyPrevalidateResult PrevalidatePowerOfAttorneyV2(
 			string authToken,
 			string boxId,
@@ -833,12 +876,18 @@ namespace Diadoc.Api
 		CounteragentGroupsList GetCounteragentGroups(string authToken, string boxId, int? page = null, int? count = null);
 		void AddCounteragentToGroup(string authToken, string boxId, string counteragentBoxId, string counteragentGroupId);
 		CounteragentFromGroupResponse GetCounteragentsFromGroup(string authToken, string boxId, string counteragentGroupId, int? count = null, string afterIndexKey = null);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		ReadonlyList GetOrganizationsByForeignTaxpayerCode(string foreignTaxpayerCode, bool includeRelations = false);
+
 		ReadonlyList GetOrganizationsByForeignTaxpayerCode(string authToken, string foreignTaxpayerCode, bool includeRelations = false);
+
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		Organization GetOrganizationByForeignTaxpayerCode(string foreignTaxpayerCode);
+
 		Organization GetOrganizationByForeignTaxpayerCode(string authToken, string foreignTaxpayerCode);
+		Organization GetOrCreateRoamingOrganizationByFnsParticipantId(string authToken, string myBoxId, [MarshalAs(UnmanagedType.IDispatch)] object request);
+		SearchFnsParticipantsResponse SearchFnsParticipants(string authToken, string myBoxId, [MarshalAs(UnmanagedType.IDispatch)] object request);
 	}
 
 	[ComVisible(true)]
@@ -1010,6 +1059,16 @@ namespace Diadoc.Api
 			return diadoc.GetOrganizationByForeignTaxpayerCode(authToken, foreignTaxpayerCode);
 		}
 
+		public Organization GetOrCreateRoamingOrganizationByFnsParticipantId(string authToken, string myBoxId, object request)
+		{
+			return diadoc.GetOrCreateRoamingOrganizationByFnsParticipantId(authToken, myBoxId, (GetOrCreateRoamingOrganizationByFnsParticipantIdRequest) request);
+		}
+
+		public SearchFnsParticipantsResponse SearchFnsParticipants(string authToken, string myBoxId, object request)
+		{
+			return diadoc.SearchFnsParticipants(authToken, myBoxId, (SearchFnsParticipantsRequest) request);
+		}
+
 		public IDocumentProtocolResult GenerateDocumentProtocol(
 			string authToken,
 			string boxId,
@@ -1104,6 +1163,7 @@ namespace Diadoc.Api
 				orderBy,
 				limit != 0 ? limit : (int?) null);
 		}
+
 		public BoxEventList GetNewEventsV8(
 			string authToken,
 			string boxId,
@@ -1213,7 +1273,7 @@ namespace Diadoc.Api
 		{
 			return diadoc.UpdateEmployeePowerOfAttorneyV2(authToken, boxId, userId, (EmployeePowerOfAttorneyToUpdateV2) powerOfAttorneyToUpdate);
 		}
-		
+
 		public EmployeePowerOfAttorney AddEmployeePowerOfAttorneyV2(string authToken, string boxId, [CanBeNull] string userId, object fullId)
 		{
 			return diadoc.AddEmployeePowerOfAttorneyV2(authToken, boxId, userId, (PowerOfAttorneyFullId) fullId);
@@ -1300,7 +1360,7 @@ namespace Diadoc.Api
 		{
 			return diadoc.PostMessagePatch(authToken, (MessagePatchToPost) patch, operationId);
 		}
-		
+
 		public MessagePatch PostMessagePatchV4(string authToken, object patch)
 		{
 			return diadoc.PostMessagePatchV4(authToken, (MessagePatchToPostV2) patch);
@@ -1476,12 +1536,12 @@ namespace Diadoc.Api
 		{
 			return ParseSignatureRejectionXml(authToken, File.ReadAllBytes(fileName));
 		}
-		
+
 		public byte[] ParseUniversalMessage(string authToken, string boxId, string messageId, string attachmentId)
 		{
 			return diadoc.ParseUniversalMessage(authToken, boxId, messageId, attachmentId);
 		}
-		
+
 		public byte[] ParseUniversalMessageXml(string authToken, byte[] content)
 		{
 			return diadoc.ParseUniversalMessageXml(authToken, content);
@@ -1729,7 +1789,7 @@ namespace Diadoc.Api
 		{
 			return diadoc.GetMessage(authToken, boxId, messageId, withOriginalSignature, injectEntityContent);
 		}
-		
+
 		public Message GetMessageV6(string authToken, string boxId, string messageId, bool withOriginalSignature = false, bool injectEntityContent = false)
 		{
 			return diadoc.GetMessageV6(authToken, boxId, messageId, withOriginalSignature, injectEntityContent);
@@ -1746,7 +1806,7 @@ namespace Diadoc.Api
 		{
 			return diadoc.GetMessage(authToken, boxId, messageId, documentId, withOriginalSignature, injectEntityContent);
 		}
-		
+
 		public Message GetMessageForDocumentV6(
 			string authToken,
 			string boxId,
@@ -2125,7 +2185,7 @@ namespace Diadoc.Api
 		{
 			return diadoc.RegisterPowerOfAttorneyResult(authToken, boxId, taskId);
 		}
-		
+
 		public PowerOfAttorneyPrevalidateResult PrevalidatePowerOfAttorneyV2(string authToken, string boxId, object request)
 		{
 			return diadoc.PrevalidatePowerOfAttorneyV2(authToken, boxId, (PowerOfAttorneyPrevalidateRequestV2) request);
@@ -2207,7 +2267,7 @@ namespace Diadoc.Api
 		{
 			return diadoc.GetCounteragent(authToken, myOrgId, counteragentOrgId);
 		}
-		
+
 		public Counteragent GetCounteragentV3(string authToken, string myBoxId, string counteragentBoxId)
 		{
 			return diadoc.GetCounteragentV3(authToken, myBoxId, counteragentBoxId);
@@ -2241,11 +2301,11 @@ namespace Diadoc.Api
 		}
 
 		public CounteragentList GetCounteragentsV3(
-			string authToken, 
-			string myBoxId, 
-			string counteragentStatus, 
-			string afterIndexKey, 
-			string query = null, 
+			string authToken,
+			string myBoxId,
+			string counteragentStatus,
+			string afterIndexKey,
+			string query = null,
 			int pageSize = 0)
 		{
 			var size = pageSize == 0 ? (int?) null : pageSize;
@@ -2349,7 +2409,7 @@ namespace Diadoc.Api
 			var fileExtension = Path.GetExtension(fileName);
 			return diadoc.UploadFileToShelfV2(authToken, File.ReadAllBytes(fileName), fileExtension);
 		}
-		
+
 		public string UploadLargeFileToShelf(string authToken, string fileName)
 		{
 			var fileExtension = Path.GetExtension(fileName);
@@ -2710,6 +2770,5 @@ namespace Diadoc.Api
 		}
 
 		#endregion
-
 	}
 }

@@ -139,6 +139,13 @@ namespace Diadoc.Api
 			return GetOrganizationAsync(authToken, qsb.BuildPathAndQuery());
 		}
 
+		public Task<Organization> GetOrCreateRoamingOrganizationByFnsParticipantIdAsync(string authToken, string myBoxId, GetOrCreateRoamingOrganizationByFnsParticipantIdRequest request)
+		{
+			var qsb = new PathAndQueryBuilder("/GetOrCreateRoamingOrganizationByFnsParticipantId");
+			qsb.AddParameter("myBoxId", myBoxId);
+			return PerformHttpRequestAsync<GetOrCreateRoamingOrganizationByFnsParticipantIdRequest, Organization>(authToken, qsb.BuildPathAndQuery(), request);
+		}
+
 		private Task<Organization> GetOrganizationAsync(string authToken, string queryString)
 		{
 			return PerformHttpRequestAsync<Organization>(authToken, "GET", queryString);

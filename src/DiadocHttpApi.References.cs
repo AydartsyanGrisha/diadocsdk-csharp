@@ -138,6 +138,13 @@ namespace Diadoc.Api
 			return GetOrganization(authToken, qsb.BuildPathAndQuery());
 		}
 
+		public Organization GetOrCreateRoamingOrganizationByFnsParticipantId(string authToken, string myBoxId, GetOrCreateRoamingOrganizationByFnsParticipantIdRequest request)
+		{
+			var qsb = new PathAndQueryBuilder("/GetOrCreateRoamingOrganizationByFnsParticipantId");
+			qsb.AddParameter("myBoxId", myBoxId);
+			return PerformHttpRequest<GetOrCreateRoamingOrganizationByFnsParticipantIdRequest, Organization>(authToken, qsb.BuildPathAndQuery(), request);
+		}
+
 		private Organization GetOrganization(string authToken, string queryString)
 		{
 			return PerformHttpRequest<Organization>(authToken, "GET", queryString);

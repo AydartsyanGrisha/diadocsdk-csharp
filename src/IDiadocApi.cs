@@ -11,6 +11,7 @@ using Diadoc.Api.Proto.Dss;
 using Diadoc.Api.Proto.Employees.Subscriptions;
 using Diadoc.Api.Proto.Employees;
 using Diadoc.Api.Proto.Events;
+using Diadoc.Api.Proto.FnsParticipants;
 using Diadoc.Api.Proto.Forwarding;
 using Diadoc.Api.Proto.Invoicing;
 using Diadoc.Api.Proto.Invoicing.Signers;
@@ -82,6 +83,8 @@ namespace Diadoc.Api
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		Organization GetOrganizationByForeignTaxpayerCode(string foreignTaxpayerCode);
 		Organization GetOrganizationByForeignTaxpayerCode(string authToken, string foreignTaxpayerCode);
+		Organization GetOrCreateRoamingOrganizationByFnsParticipantId(string authToken, string myBoxId, GetOrCreateRoamingOrganizationByFnsParticipantIdRequest request);
+		SearchFnsParticipantsResponse SearchFnsParticipants(string authToken, string myBoxId, SearchFnsParticipantsRequest request);
 		RoamingOperatorList GetRoamingOperators(string authToken, string boxId);
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		Box GetBox(string boxId);
@@ -577,6 +580,8 @@ namespace Diadoc.Api
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		Task<Organization> GetOrganizationByForeignTaxpayerCodeAsync(string foreignTaxpayerCode);
 		Task<Organization> GetOrganizationByForeignTaxpayerCodeAsync(string authToken, string foreignTaxpayerCode);
+		Task<Organization> GetOrCreateRoamingOrganizationByFnsParticipantIdAsync(string authToken, string myBoxId, GetOrCreateRoamingOrganizationByFnsParticipantIdRequest request);
+		Task<SearchFnsParticipantsResponse> SearchFnsParticipantsAsync(string authToken, string myBoxId, SearchFnsParticipantsRequest request);
 		Task<RoamingOperatorList> GetRoamingOperatorsAsync(string authToken, string boxId);
 		[Obsolete(ObsoleteReasons.UseAuthTokenOverload)]
 		Task<Box> GetBoxAsync(string boxId);
