@@ -11,6 +11,7 @@ using Diadoc.Api.Proto.Dss;
 using Diadoc.Api.Proto.Employees.Subscriptions;
 using Diadoc.Api.Proto.Employees;
 using Diadoc.Api.Proto.Events;
+using Diadoc.Api.Proto.FnsParticipants;
 using Diadoc.Api.Proto.Forwarding;
 using Diadoc.Api.Proto.Invoicing;
 using Diadoc.Api.Proto.Invoicing.Signers;
@@ -211,6 +212,22 @@ namespace Diadoc.Api
 			if (authToken == null) throw new ArgumentNullException(nameof(authToken));
 			if (foreignTaxpayerCode == null) throw new ArgumentNullException(nameof(foreignTaxpayerCode));
 			return diadocHttpApi.GetOrganizationByForeignTaxpayerCodeAsync(authToken, foreignTaxpayerCode);
+		}
+
+		public Task<Organization> GetOrCreateRoamingOrganizationByFnsParticipantIdAsync(string authToken, string myBoxId, GetOrCreateRoamingOrganizationByFnsParticipantIdRequest request)
+		{
+			if (authToken == null) throw new ArgumentNullException(nameof(authToken));
+			if (myBoxId == null) throw new ArgumentNullException(nameof(myBoxId));
+			if (request == null) throw new ArgumentNullException(nameof(request));
+			return diadocHttpApi.GetOrCreateRoamingOrganizationByFnsParticipantIdAsync(authToken, myBoxId, request);
+		}
+
+		public Task<SearchFnsParticipantsResponse> SearchFnsParticipantsAsync(string authToken, string myBoxId, SearchFnsParticipantsRequest request)
+		{
+			if (authToken == null) throw new ArgumentNullException(nameof(authToken));
+			if (myBoxId == null) throw new ArgumentNullException(nameof(myBoxId));
+			if (request == null) throw new ArgumentNullException(nameof(request));
+			return diadocHttpApi.SearchFnsParticipantsAsync(authToken, myBoxId, request);
 		}
 
 		public Task<RoamingOperatorList> GetRoamingOperatorsAsync(string authToken, string boxId)
