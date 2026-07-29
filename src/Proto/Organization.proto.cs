@@ -313,6 +313,13 @@ namespace Diadoc.Api.Proto
       get { return _ReadyForEpdStatus; }
       set { _ReadyForEpdStatus = value; }
     }
+    private string _Comment;
+    [global::ProtoBuf.ProtoMember(31, IsRequired = true, Name=@"Comment", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string Comment
+    {
+      get { return _Comment; }
+      set { _Comment = value; }
+    }
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
